@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InsertItemRequest;
 use Illuminate\Http\Request;
+use App\Models\Book;
+use App\Models\Item;
 
 class ItemController extends Controller
 {
@@ -24,7 +27,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('Item.insertItem');
     }
 
     /**
@@ -81,5 +84,36 @@ class ItemController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function Book()
+    {
+        $bookModel = new Book();
+
+        $books = $bookModel->get();
+
+        foreach ($books as $book)
+        {
+            echo "nama buku : " .$book->nama_buku.'<br>';
+            echo "deskripsi buku : " .$book->deskripsi.'<br>';
+            echo "harga buku : " .$book->harga.'<br>';
+        }
+    }
+
+    public function Insert(InsertItemRequest $request)
+    {
+        $post = $request->all();
+
+        $insertItem = [
+            'item_name'=>$post['item_name'],
+            'item_type'=>$post['item_type'],
+            'item_price'=>$post['item_price'],
+            'item_desc'=>$post['item_desc']
+        ];
+
+        $item = Item::create($insertItem);
+        $item->save();
+
+        return redirect()->route('Item');
     }
 }
