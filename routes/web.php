@@ -26,3 +26,4 @@ Route::get('/Item', [ItemController::class, 'index'])->name('Item');
 Route::get('/Item/Book', [ItemController::class, 'Book']);
 Route::get('/Item/create', [ItemController::class, 'create']);
 Route::post('/Item/post', [ItemController::class, "Insert"]);
+Route::get('/getTokenCSRF', function() { echo csrf_token(); });

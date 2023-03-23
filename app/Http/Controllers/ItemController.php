@@ -6,6 +6,7 @@ use App\Http\Requests\InsertItemRequest;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Item;
+use Illuminate\Support\Facades\Validator;
 
 class ItemController extends Controller
 {
@@ -103,6 +104,17 @@ class ItemController extends Controller
     public function Insert(InsertItemRequest $request)
     {
         $post = $request->all();
+
+        // $validator = Validator::make($post, [
+        //     'item_name'=>'required|max:15',
+        //     'item_type'=>'required|max:10',
+        //     'item_price'=>'required|numeric',
+        //     'item_desc'=>'required'
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return \response()->json($validator->errors()->getMessages());
+        // }
 
         $insertItem = [
             'item_name'=>$post['item_name'],
