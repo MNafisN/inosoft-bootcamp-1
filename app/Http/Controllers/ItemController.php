@@ -105,16 +105,19 @@ class ItemController extends Controller
     {
         $post = $request->all();
 
-        // $validator = Validator::make($post, [
-        //     'item_name'=>'required|max:15',
-        //     'item_type'=>'required|max:10',
-        //     'item_price'=>'required|numeric',
-        //     'item_desc'=>'required'
-        // ]);
+        $validator = Validator::make($post, [
+            'item_name'=>'required|max:15',
+            'item_type'=>'required|max:10',
+            'item_price'=>'required|numeric',
+            'item_desc'=>'required'
+        ]);
 
-        // if ($validator->fails()) {
-        //     return \response()->json($validator->errors()->getMessages());
-        // }
+        if ($validator->fails()) {
+            $errors = $validator->errors()->getMessages();
+            return response()->json([
+                'error' => $errors
+            ]);
+        }
 
         $insertItem = [
             'item_name'=>$post['item_name'],

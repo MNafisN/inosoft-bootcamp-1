@@ -17,15 +17,15 @@ class ItemTableSeeder extends Seeder
      */
     public function run()
     {
-        $jumlah = 100;
+        $jumlah = 50;
 
         for ($a=0; $a<$jumlah; $a++) 
         {
             DB::table('item')->insert([
-                'item_name'=>Str::random(25),
-                'item_type'=>Str::random(10),
+                'item_name'=>Str::random(10),
+                'item_type'=>Str::random(7),
                 'item_price'=>rand(10000,100000),
-                'item_desc'=>Str::random(50),
+                'item_desc'=>Str::random(20),
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now()
             ]);

@@ -6,12 +6,16 @@ use Facade\Ignition\Tabs\Tab;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
-{
-    use HasFactory;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-    protected $table = "book";
-    protected $primaryKey = "id";
+class Book extends Eloquent
+{
+    // use HasFactory;
+
+    protected $connection = 'mongodb';
+    protected $collection = 'book';
+    // protected $table = "book";
+    // protected $primaryKey = "id";
     public $timestamps = false;
 
     protected $fillable = [

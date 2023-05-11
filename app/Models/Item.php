@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Item extends Model
+class Item extends Eloquent
 {
-    use HasFactory;
+    // use HasFactory;
 
-    protected $table = "item";
-    protected $primaryKey = "id";
+    protected $connection = 'mongodb';
+    protected $collection = 'book';
+    // protected $table = "item";
+    // protected $primaryKey = "id";
     public $timestamps = true;
 
     protected $fillable = [
